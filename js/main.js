@@ -18,124 +18,104 @@ objNavMeni.innerHTML += `</ul>`
 
 // Kvadratna šifra šifrovanje i dešifrovanje
 
-document.querySelector("#sifrovanje").addEventListener("click", sifrujDesifruj)
+
+document.querySelector("#sifrovanje").addEventListener("click", sifrujDesifruj);
 
 function sifrujDesifruj() {
 
-    let tbInput = document.querySelector("#input").value;
-    let tbOutput = document.querySelector("#output");
+    var tbInput = ``;
+    tbInput += document.querySelector("#input").value;
+    var tbOutput = document.querySelector("#output");
 
-        // prvi niz
-    let niz1 = tbInput.split("");
+    //prvi niz
+
+    var niz1 = tbInput.split("");
     console.log(niz1);
-    console.log(niz1.length);
 
-    let dvodimenzioniNizIndex = Math.floor(Math.sqrt(niz1.length))
-    console.log(dvodimenzioniNizIndex);
+    var dvodimenzioniNizIndeks = Math.floor(Math.sqrt(niz1.length));
 
-        // drugi niz - dvodimenzionalni
-    let niz2 = [];
-    while(niz1.length) niz2.push(niz1.splice(0, dvodimenzioniNizIndex));
+
+    //drugi niz
+
+    var niz2 = []
+    while(niz1.length) niz2.push(niz1.splice(0, dvodimenzioniNizIndeks));
     console.log(niz2);
 
-        // funkcija za pravljenje dvodimenzionalnih nizova
+    //treci niz
+
+    var niz3 = napraviNiz(dvodimenzioniNizIndeks, dvodimenzioniNizIndeks);
+
     function napraviNiz(length) {
         var arr = new Array(length || 0),
             i = length;
-
         if (arguments.length > 1) {
             var args = Array.prototype.slice.call(arguments, 1);
             while(i--) arr[length-1 - i] = napraviNiz.apply(this, args);
         }
-
         return arr;
     }
 
-        // treci niz - dvodimenzionalni - izbacivanje viska iz niz2
-    let niz3 = napraviNiz(dvodimenzioniNizIndex, dvodimenzioniNizIndex)
-    for (let i = 0; i < dvodimenzioniNizIndex; i++) 
-    {
-        for (let j = 0; j < dvodimenzioniNizIndex; j++) 
-        {
-            niz3[i][j] = niz2[j][i]
+    for (let i = 0; i < dvodimenzioniNizIndeks; i++){
+        for (let j = 0; j < dvodimenzioniNizIndeks; j++){
+            niz3[i][j] = niz2[j][i];
         }
     }
     console.log(niz3);
 
-        // cetvrti niz - vracanje u jednodimenzionalne nizove
-    let niz4 = niz3.flat(1);
+    //cetvrti niz
+
+    var niz4 = niz3.flat(1);
     console.log(niz4);
 
-        // peti niz - pravljenje stringa
-    let niz5 = niz4.join("");
+    //peti niz
+
+    var niz5 = niz4.join("");
     console.log(niz5);
 
-        // resetovanje prvog niza
-    niz1 = tbInput.split("");
-    console.log(niz1);
-    niz1.splice(0, Math.pow(dvodimenzioniNizIndex, 2))
-    console.log(niz1);
-    console.log(niz1.length);
+    console.log("****************************************************");
 
+    niz2 = niz2.flat(1);
+    console.log(niz2);
+    niz3 = niz3.flat(1);
+    console.log(niz3);
+    var razlika = niz2.length - niz3.length;
+    console.log(razlika);
 
-    while (niz1.length > 3) 
-    {
-        dvodimenzioniNizIndex = Math.floor(Math.sqrt(niz1.length))
-        console.log(dvodimenzioniNizIndex);
+    while (razlika > 3){
+        niz2.splice(0, Math.pow(dvodimenzioniNizIndeks, 2));
+        niz1 = niz2;
+        console.log(niz1);
+        dvodimenzioniNizIndeks = Math.floor(Math.sqrt(niz1.length));
+        console.log(dvodimenzioniNizIndeks);
         niz2 = [];
-        while(niz1.length) niz2.push(niz1.splice(0, dvodimenzioniNizIndex));
+        while(niz1.length) niz2.push(niz1.splice(0, dvodimenzioniNizIndeks));
         console.log(niz2);
-        niz3 = napraviNiz(dvodimenzioniNizIndex, dvodimenzioniNizIndex)
-        for (let i = 0; i < dvodimenzioniNizIndex; i++) 
-        {
-            for (let j = 0; j < dvodimenzioniNizIndex; j++) 
-            {
-                niz3[i][j] = niz2[j][i]
+        niz3 = napraviNiz(dvodimenzioniNizIndeks, dvodimenzioniNizIndeks); 
+        for (let i = 0; i < dvodimenzioniNizIndeks; i++){
+            for (let j = 0; j < dvodimenzioniNizIndeks; j++){
+                niz3[i][j] = niz2[j][i];
             }
         }
         console.log(niz3);
         niz4 = niz3.flat(1);
         console.log(niz4);
         niz5 += niz4.join("");
-        
-        console.log(niz2);
-        niz2.splice(0, niz3.length);
-        console.log(niz2);
+        console.log(niz5);
+
         niz2 = niz2.flat(1);
-        niz2 = niz2.join("");
         console.log(niz2);
-
-        console.log(niz1);
-        console.log(niz1.length);
-        niz1.splice(0, Math.pow(dvodimenzioniNizIndex, 2))
-        console.log(niz1);
-        console.log(niz1.length);
-        
-        if (niz2.length <= 3 && niz2.length > 0)
-        {
-            niz5 += niz2;
-        }
-        else
-        {
-            niz1 = niz2.split("");
-        }
+        niz3 = niz3.flat(1);
+        console.log(niz3);
+        var razlika = niz2.length - niz3.length;
+        console.log(razlika);
     }
-
-    console.log(niz2[dvodimenzioniNizIndex]);
-    if (niz2[dvodimenzioniNizIndex]) {
-        let ostatak = [];
-        for (let i = dvodimenzioniNizIndex, j = 0; i < niz2.length ; i++, j++) {
-            ostatak[j] = niz2[i];
-            console.log(ostatak);
-        }
-        console.log(ostatak.flat(1).join(""));
-        niz5 += ostatak.flat(1).join("");
-    }
-
+    niz2.splice(0, Math.pow(dvodimenzioniNizIndeks, 2));
+    niz5 += niz2;
     console.log(niz5);
     console.log(niz5.length);
-    tbOutput.innerHTML = niz5
 
+    tbOutput.innerHTML = niz5;
+    
 }
 
 // Kvadratna šifra šifrovanje i dešifrovanje kraj

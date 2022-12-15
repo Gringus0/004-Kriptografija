@@ -154,23 +154,20 @@ https://www.tooplate.com/view/2117-infinite-loop
           <div class="text-center col-12">
               <h2 class="tm-text-primary tm-section-title mb-4">Šifrovanje i dešifrovanje</h2>
               <p class="mx-auto tm-section-desc">
-                Uneti tekst kako bi mogli i sami da isprobate ovu šifru koju je prosto razumeti, ali teško dešifrovati. Tekst može biti bilo koje dužine.
+                Uneti tekst kako bi mogli i sami da isprobate ovu šifru koju je prosto razumeti, ali teško dešifrovati. Tekst može biti bilo koje dužine. Ukoliko želite da dešifrujete Vaš šifrovan tekst možete prekopirati šifrovani tekst nazad.
               </p>
           </div> 
-          <form class="col-6">
-            <div class="form-group">
+          <form class="col-12 row">
+            <div class="form-group col-6">
               <label for="input">Molimo unesite neki tekst:</label>
-              <!-- tesitranje:  123456789012345678901234567890123456789 -->
               <textarea class="form-control" id="input" rows="3"></textarea>
             </div>
-            <button type="button" id="sifrovanje" class="btn btn-primary">Šifruj / Dešifruj</button>
-          </form> 
-          <div class="col-6">
-            <label>Šifrovani tekst:</label>
-            <p id="output">
-              
-            </p>
-          </div>
+            <div class="form-group col-6">
+              <label>Šifrovani tekst:</label>
+              <textarea class="form-control" id="output" rows="3"></textarea>
+            </div>
+            <button type="button" id="sifrovanje" class="btn btn-primary col-12">Šifruj / Dešifruj</button>
+          </form>
           
         </div>
         <div class="row">

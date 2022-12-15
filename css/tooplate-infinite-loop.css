@@ -740,3 +740,15 @@ p {
 .obavezna {
   font-size: 12pt;
 }
+
+#output {
+  font-size: medium;
+  text-align: justify;
+  height: 50vh;
+}
+
+#input {
+  height: 50vh;
+  font-size: medium;
+  text-align: justify;
+}
