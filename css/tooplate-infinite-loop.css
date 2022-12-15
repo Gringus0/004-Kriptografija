@@ -736,3 +736,7 @@ p {
   padding-top: 100px;
   background-blend-mode: overlay;
 }
+
+.obavezna {
+  font-size: 12pt;
+}

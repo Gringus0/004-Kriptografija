@@ -147,10 +147,10 @@ let objForma = document.querySelector("#formular");
 let nizInputId = ["ime", "prezime", "email"];
 let nizInputName = ["name", "name", "email"];
 let nizInputType = ["text", "text", "email"];
-let nizInputPlaceholder = ["Vaše ime", "Vaše prezime", "Vaš e-mail"];
+let nizInputPlaceholder = ["Vaše ime*", "Vaše prezime*", "Vaš e-mail*"];
 
 
-objForma.innerHTML = ``;
+objForma.innerHTML = `<span id="obavezno" class="col-6 obavezna">*obavezna polja</span>`;
 
 for (let i = 0; i < nizInputId.length; i++){
     objForma.innerHTML += `<input id="${nizInputId[i]}" name="${nizInputName[i]}" type="${nizInputType[i]}" placeholder="${nizInputPlaceholder[i]}" class="tm-input mb-1" required="required" />
@@ -178,6 +178,7 @@ objForma.innerHTML += `<span id="tipPrijave" class="aj-sakrij col-6"></span>
                             <input type="checkbox" id="chbObavest" class="form-check-input" value="Obavestenja">Obeležiti ukoliko želite da primate obaveštenja o našim predavanjima i kursevima putem e-mail pošte (opciono).
                         </label>
                         </div>
+                        
                         <button type="button" id="prijava" class="btn tm-btn-submit mt-3">Prijavi se</button>`
 
 let prijavaButton = document.querySelector("#prijava");
