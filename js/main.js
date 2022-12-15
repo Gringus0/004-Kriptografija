@@ -1,6 +1,24 @@
+// JQuery
+
+$(document).ready(function(){
+    $("#nastavak").hide();
+    var parNepar = 0;
+    $("#taster").click(function(e){
+    e.preventDefault();
+
+    if(parNepar % 2 == 0){
+        $("#nastavak").fadeIn();
+        $("#taster").html("Sakrij");
+    }else{
+        $("#nastavak").fadeOut();
+        $("#taster").html("Saznaj više");
+    }
+    parNepar++;
+})}); 
+
+// JQuery kraj
+
 // Navigacija
-
-
 
 let objNavMeni = document.querySelector("#navitems");
 objNavMeni.innerHTML = ``
@@ -161,7 +179,7 @@ objForma.innerHTML += `<span id="tipPrijave" class="aj-sakrij col-11"></span>
                         </label>
                         </div>
                         
-                        <button type="button" id="prijava" class="btn tm-btn-submit mt-3">Prijavi se</button>`
+                        <button type="button" id="prijava" class="tm-intro-text tm-btn-primary mt-3 mb-5 col-6">Prijavi se</button>`
 
 let prijavaButton = document.querySelector("#prijava");
 prijavaButton.addEventListener("click", proveraForma);

@@ -64,8 +64,9 @@ https://www.tooplate.com/view/2117-infinite-loop
                 <div class="col-lg-12 col-xl-12">
                     <div class="tm-intro-text-container">
                         <h2 class="tm-text-primary mb-4 tm-section-title">Šta je kriptografija?</h2>
-                        <p class="mb-4 tm-intro-text">
-                          Kriptografija je nauka koja se bavi metodima očuvanja tajnosti informacija. Kada se lične, finansijske, vojne ili informacije državne bezbednosti prenose sa mesta na mesto, one postaju ranjive na prisluškivačke taktike. Ovakvi problemi se mogu izbeći kriptovanjem (šifrovanjem) informacija koje ih čini nedostupnim neželjenoj strani. Šifra i digitalni potpis su kriptografske tehnike koje se koriste da bi se implementirali bezbednosni servisi. Osnovni element koji se koristi naziva se šifarski sistem ili algoritam šifrovanja. Svaki šifarski sistem obuhvata par transformacija podataka, koje se nazivaju šifrovanje i dešifrovanje.</p>
+                        <p class="mb-4 tm-intro-text" id="oKriptografiji">
+                          Kriptografija je nauka koja se bavi metodima očuvanja tajnosti informacija. Kada se lične, finansijske, vojne ili informacije državne bezbednosti prenose sa mesta na mesto, one postaju ranjive na prisluškivačke taktike.</p><p id="nastavak"> Ovakvi problemi se mogu izbeći kriptovanjem (šifrovanjem) informacija koje ih čini nedostupnim neželjenoj strani. Šifra i digitalni potpis su kriptografske tehnike koje se koriste da bi se implementirali bezbednosni servisi. Osnovni element koji se koristi naziva se šifarski sistem ili algoritam šifrovanja. Svaki šifarski sistem obuhvata par transformacija podataka, koje se nazivaju šifrovanje i dešifrovanje.</p>
+                          <a href="#staJeKriptografija" id="taster" class="tm-intro-text tm-btn-primary btn-primary">Saznaj više</a>
                     </div>
                 </div>
 
@@ -105,10 +106,6 @@ https://www.tooplate.com/view/2117-infinite-loop
                         <h2 class="tm-text-primary mb-4">Ključ Šifrovanja</h2>
                         <p class="mb-4 tm-intro-text">
                           Prilikom šifrovanja, pored otvorenog teksta, koristi se jedna nezavisna vrednost koja se naziva ključ šifrovanja.</p>
-                          
-                          <div class="tm-continue">
-                            <a href="#kvadratnaSifra" class="tm-intro-text tm-btn-primary">O šifrovanju</a>
-                        </div>
                     </div>
                 </div>
                 
@@ -120,15 +117,13 @@ https://www.tooplate.com/view/2117-infinite-loop
                       <h2 class="tm-text-primary mb-4">Ključ dešifrovanja</h2>
                         <p class="mb-4 tm-intro-text">
                           Slično kao i kod šifrovanja, transformacija za dešifrovanje koristi ključ dešifrovanja.</p>
-                          
-                          <div class="tm-continue">
-                            <a href="#kvadratnaSifra" class="tm-intro-text tm-btn-primary">O dešifrovanju</a>
-                        </div>
                     </div>
                 </div>
 
             </div><!-- third row -->
-
+            <div class="tm-continue row text-center mx-5">
+              <a href="#kvadratnaSifra" class="tm-intro-text tm-btn-primary col-12">O šifrovanju</a>
+          </div>
         </div>
       
     </section>
@@ -166,7 +161,7 @@ https://www.tooplate.com/view/2117-infinite-loop
               <label>Šifrovani tekst:</label>
               <textarea class="form-control" id="output" rows="3"></textarea>
             </div>
-            <button type="button" id="sifrovanje" class="btn btn-primary col-12">Šifruj / Dešifruj</button>
+            <button type="button" id="sifrovanje" class="tm-intro-text tm-btn-primary col-12">Šifruj / Dešifruj</button>
           </form>
           
         </div>
@@ -248,7 +243,6 @@ https://www.tooplate.com/view/2117-infinite-loop
         </footer>
 
     </section>
-    
     <script src="js/jquery-1.9.1.min.js"></script>     
     <script src="slick/slick.min.js"></script>
     <script src="magnific-popup/jquery.magnific-popup.min.js"></script>
@@ -440,6 +434,10 @@ https://www.tooplate.com/view/2117-infinite-loop
         });
       });
     </script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    
     <script src="js/main.js"></script>
   </body>
 </html>
