@@ -1,5 +1,7 @@
 // Navigacija
 
+
+
 let objNavMeni = document.querySelector("#navitems");
 objNavMeni.innerHTML = ``
 
@@ -134,7 +136,7 @@ objForma.innerHTML = `<span id="obavezno" class="col-6 obavezna">*obavezna polja
 
 for (let i = 0; i < nizInputId.length; i++){
     objForma.innerHTML += `<input id="${nizInputId[i]}" name="${nizInputName[i]}" type="${nizInputType[i]}" placeholder="${nizInputPlaceholder[i]}" class="tm-input mb-1" required="required" />
-                            <span class="aj-sakrij col-6 upozorenje mb-3"></span>`;
+                            <span class="aj-sakrij col-11 upozorenje mb-3"></span>`;
 }
 
 objForma.innerHTML += `<textarea id="pitanja" name="message" rows="8" placeholder="Pitanja?" class="tm-input"></textarea>`;
@@ -143,7 +145,7 @@ let nizRadioLabel = ["Kurs", "Predavanje"];
 let nizRadioId = ["rdKurs", "rdPred"];
 let nizRadioValue = ["K", "P"];
 
-objForma.innerHTML += ``
+objForma.innerHTML += `<label class="col-12">Izaberite za šta se prijavljujete*:</label>`
 for (let i = 0; i < nizRadioLabel.length; i++){
     objForma.innerHTML += `<div><div class="form-check-inline mb-2">
                                 <label class="form-check-label" for="${nizRadioId[i]}">
@@ -152,7 +154,7 @@ for (let i = 0; i < nizRadioLabel.length; i++){
                             </div></div>`
 }
 objForma.innerHTML += `</div>`
-objForma.innerHTML += `<span id="tipPrijave" class="aj-sakrij col-6"></span>
+objForma.innerHTML += `<span id="tipPrijave" class="aj-sakrij col-11"></span>
                         <div class="form-check">
                         <label class="form-check-label" for="chbObavest">
                             <input type="checkbox" id="chbObavest" class="form-check-input" value="Obavestenja">Obeležiti ukoliko želite da primate obaveštenja o našim predavanjima i kursevima putem e-mail pošte (opciono).
@@ -172,14 +174,14 @@ var nizTipPrijave = document.getElementsByName("tipPrijave");
 var regExImeIPrezime = /^([A-ZŠĐČĆŽ][a-zšđčćž]{2,19})(\s[A-ZŠĐČĆŽ][a-zšđčćž)]{2,19})?$/;
 var regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-blurProvera(objIme, regExImeIPrezime, "Ime nije u dobrom formatu.");
-blurProvera(objPrezime, regExImeIPrezime, "Prezime nije u dobrom formatu.");
+blurProvera(objIme, regExImeIPrezime, "Ime nije u dobrom formatu. Dozvoljena su dva imena. Primer: Aleksandar Radivoje");
+blurProvera(objPrezime, regExImeIPrezime, "Prezime nije u dobrom formatu. Dozvoljena su dva prezimena. Primer: Pavlović Jovanović");
 blurProvera(objEmail, regExEmail, "Email nije u dobrom formatu. Primer: johndoe@email.com");
 
 function proveraForma() {
 
-    proveraRegEx(regExImeIPrezime, objIme, "Ime nije u dobrom formatu.");
-    proveraRegEx(regExImeIPrezime, objPrezime, "Prezime nije u dobrom formatu.");
+    proveraRegEx(regExImeIPrezime, objIme, "Ime nije u dobrom formatu. Dozvoljena su dva imena. Primer: Aleksandar Radivoje");
+    proveraRegEx(regExImeIPrezime, objPrezime, "Prezime nije u dobrom formatu. Dozvoljena su dva prezimena. Primer: Pavlović Jovanović");
     proveraRegEx(regExEmail, objEmail, "Email nije u dobrom formatu. Primer: johndoe@email.com")
 
     let tipPrijave = "";
@@ -199,7 +201,7 @@ function proveraForma() {
 
 function blurProvera(obj, regEx, poruka) {
     obj.addEventListener("blur", function(){
-        proveraRegEx(regEx, obj, poruka)
+        proveraRegEx(regEx, obj, poruka) 
     })
 }
 
@@ -215,5 +217,6 @@ function proveraRegEx(re, objekat, poruka){
         objekat.classList.remove("aj-crveni-okvir");
     }
 }
+
 
 // Forma - kraj

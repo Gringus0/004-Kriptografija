@@ -305,7 +305,7 @@ blockquote {
 .tm-section-desc {
   max-width: 650px;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
 
 .tm-gallery-container {
@@ -682,6 +682,7 @@ p {
 
 .aj-crveni-okvir{
   border: 2px solid #ff0000;
+  border-radius: 10px;
 }
 
 .upozorenje {
