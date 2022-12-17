@@ -130,6 +130,7 @@ function sifrujDesifruj() {
         console.log(razlika);
     }
     niz2.splice(0, Math.pow(dvodimenzioniNizIndeks, 2));
+    niz2 = niz2.join("");
     niz5 += niz2;
     console.log(niz5);
     console.log(niz5.length);
