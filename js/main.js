@@ -95,7 +95,6 @@ function sifrujDesifruj() {
     console.log("****************************************************");
 
     niz2 = niz2.flat(1);
-    niz2 = niz2.flat(1);
     console.log(niz2);
     niz3 = niz3.flat(1);
     console.log(niz3);
