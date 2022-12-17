@@ -135,7 +135,7 @@ function sifrujDesifruj() {
     console.log(niz5);
     console.log(niz5.length);
 
-    tbOutput.innerHTML = niz5;
+    tbOutput.value = niz5;
     
 }
 
