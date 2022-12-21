@@ -42,7 +42,7 @@ objNavMeni.innerHTML += `</ul>`
 // Kvadratna šifra šifrovanje i dešifrovanje
 
 
-document.querySelector("#sifrovanje").addEventListener("click", sifrujDesifruj);
+document.querySelector("#sifruj").addEventListener("click", sifrujDesifruj);
 
 function sifrujDesifruj() {
 
@@ -53,6 +53,7 @@ function sifrujDesifruj() {
     //prvi niz - pravljenje niza od stringa
 
     let nizKaraktera = tbInput.split("");
+    console.log(`Niz karaktera: `);
     console.log(nizKaraktera);
 
     let dvodimenzioniNizIndeks = Math.floor(Math.sqrt(nizKaraktera.length));
@@ -62,6 +63,7 @@ function sifrujDesifruj() {
 
     let dvodimenzionalniNiz = []
     while(nizKaraktera.length) dvodimenzionalniNiz.push(nizKaraktera.splice(0, dvodimenzioniNizIndeks));
+    console.log(`Dvodimenzionalni niz karaktera`);
     console.log(dvodimenzionalniNiz);
 
     //treci niz - pravljenje kvadratnog dvodimenzionalnog niza
@@ -85,16 +87,19 @@ function sifrujDesifruj() {
             kvadratniDvodimenzionalniNiz[i][j] = dvodimenzionalniNiz[j][i];
         }
     }
+    console.log(`Kvadratni dvodimenzionalni niz karaktera: `);
     console.log(kvadratniDvodimenzionalniNiz);
 
     //cetvrti niz - vracanje u jednodimenzionalni niz
 
     let nizSifrovanihKaraktera = kvadratniDvodimenzionalniNiz.flat(1);
+    console.log(`Niz sifrovanih karaktera: `);
     console.log(nizSifrovanihKaraktera);
 
     //peti niz - spajanje niza u string
 
     let stringOutput = nizSifrovanihKaraktera.join("");
+    
     console.log(stringOutput);
 
     console.log("****************************************************");
@@ -135,10 +140,14 @@ function sifrujDesifruj() {
         console.log(kvadratniDvodimenzionalniNiz);
         let razlika = dvodimenzionalniNiz.length - kvadratniDvodimenzionalniNiz.length;
         console.log(razlika);
+        if (razlika == 0){
+            break;
+        }
     }
     dvodimenzionalniNiz.splice(0, Math.pow(dvodimenzioniNizIndeks, 2));
     dvodimenzionalniNiz = dvodimenzionalniNiz.join("");
     stringOutput += dvodimenzionalniNiz;
+    console.log(`String sifrovanih karaktera`);
     console.log(stringOutput);
     console.log(stringOutput.length);
 
