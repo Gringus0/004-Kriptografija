@@ -14,7 +14,10 @@ $(document).ready(function(){
         $("#taster").html("Saznaj više");
     }
     parNepar++;
+
+    
 })}); 
+
 
 // JQuery kraj
 
@@ -147,42 +150,119 @@ function sifrujDesifruj() {
 
 let objForma = document.querySelector("#formular");
 
-let nizInputId = ["ime", "prezime", "email"];
-let nizInputName = ["name", "name", "email"];
-let nizInputType = ["text", "text", "email"];
-let nizInputPlaceholder = ["Vaše ime*", "Vaše prezime*", "Vaš e-mail*"];
+let forma = document.querySelector("#formular");
 
+let formaInputId = ["ime", "prezime", "email"];
+let formaInputImena = ["name", "name", "email"];
+let formaInputType = ["text", "text", "email"];
+let formaInputPlaceholder = ["Vaše ime*", "Vaše prezime*", "Vaš e-mail*"];
+let inputKlase = ["tm-input", "mb-1"];
 
-objForma.innerHTML = `<span id="obavezno" class="col-6 obavezna">*obavezna polja</span>`;
+let spanKlase = ["col-11", "upozorenje", "mb-3", "aj-sakrij"];
+let spanTekst = ["Ime nije u dobrom formatu. Dozvoljena su dva imena. Primer: Aleksandar Radivoje", "Prezime nije u dobrom formatu. Dozvoljena su dva prezimena. Primer: Pavlović Jovanović", "Email nije u dobrom formatu. Primer: johndoe@email.com"];
 
-for (let i = 0; i < nizInputId.length; i++){
-    objForma.innerHTML += `<input id="${nizInputId[i]}" name="${nizInputName[i]}" type="${nizInputType[i]}" placeholder="${nizInputPlaceholder[i]}" class="tm-input mb-1" required="required" />
-                            <span class="aj-sakrij col-11 upozorenje mb-3"></span>`;
+let spanObavezno = document.createElement("span");
+spanObavezno.setAttribute("id", "obavezno");
+spanObavezno.classList.add("col-6");
+spanObavezno.classList.add("obavezna");
+spanObavezno.innerHTML = "*obavezna polja";
+
+forma.appendChild(spanObavezno);
+
+for (let i in formaInputId){
+    let inputTag = document.createElement(`input`);
+    inputTag.setAttribute(`id`, `${formaInputId[i]}`);
+    inputTag.setAttribute(`name`, `${formaInputImena[i]}`);
+    inputTag.setAttribute(`type`, `${formaInputType[i]}`);
+    inputTag.setAttribute(`placeholder`, `${formaInputPlaceholder[i]}`);
+    for (let i in inputKlase){
+        inputTag.classList.add(`${inputKlase[i]}`);
+    }
+    inputTag.setAttribute(`required`, `required`);
+    forma.appendChild(inputTag);
+    let spanTag = document.createElement(`span`);
+    for (let i in spanKlase){
+        spanTag.classList.add(`${spanKlase[i]}`);
+    }
+    
+    forma.appendChild(spanTag);
 }
 
-objForma.innerHTML += `<textarea id="pitanja" name="message" rows="8" placeholder="Pitanja?" class="tm-input"></textarea>`;
+let textareaPitanja = document.createElement(`textarea`);
+textareaPitanja.setAttribute(`id`, `pitanja`);
+textareaPitanja.setAttribute(`name`, `pitanja`);
+textareaPitanja.setAttribute(`rows`, `8`);
+textareaPitanja.setAttribute(`placeholder`, `Pitanja?`);
+textareaPitanja.classList.add(`tm-input`);
+forma.appendChild(textareaPitanja);
 
-let nizRadioLabel = ["Kurs", "Predavanje"];
-let nizRadioId = ["rdKurs", "rdPred"];
-let nizRadioValue = ["K", "P"];
+let radioNaslov = document.createElement(`label`);
+radioNaslov.classList.add(`col-12`);
+radioNaslov.innerHTML = `Izaberite za šta se prijavljujete*:`;
+forma.appendChild(radioNaslov);
 
-objForma.innerHTML += `<label class="col-12">Izaberite za šta se prijavljujete*:</label>`
-for (let i = 0; i < nizRadioLabel.length; i++){
-    objForma.innerHTML += `<div><div class="form-check-inline mb-2">
-                                <label class="form-check-label" for="${nizRadioId[i]}">
-                                <input type="radio" id="${nizRadioId[i]}" class="form-check-input" name="tipPrijave" value="${nizRadioValue[i]}">${nizRadioLabel[i]}
-                                </label>
-                            </div></div>`
+let radioForIId = [`rdKurs`, `rdPred`];
+let radioValue = [`K`, `P`];
+let radioTekst = [`Kurs`, `Predavanje`];
+
+let radioDiv = document.createElement(`div`);
+forma.appendChild(radioDiv)
+
+let spanVrstaPrijave = document.createElement(`span`);
+spanVrstaPrijave.setAttribute(`id`, `vrstaPrijave`);
+spanVrstaPrijave.classList.add(`coll-11`);
+spanVrstaPrijave.classList.add(`aj-sakrij`);
+spanVrstaPrijave.innerHTML = `Morate izabrati ili predavanje ili kurs!`
+radioDiv.appendChild(spanVrstaPrijave);
+
+for (let i in radioTekst){
+    let prviDiv = document.createElement(`div`);
+    let drugiDiv = document.createElement(`div`);
+    drugiDiv.classList.add(`form-check-inline`);
+    drugiDiv.classList.add(`mb-2`);
+    prviDiv.appendChild(drugiDiv);
+    let radioLabel = document.createElement(`label`);
+    radioLabel.classList.add(`form-check-label`);
+    radioLabel.setAttribute(`for`, `${radioForIId[i]}`);
+    radioLabel.innerHTML = `${radioTekst[i]}`
+    let radioInput = document.createElement(`input`);
+    radioInput.setAttribute(`type`, `radio`);
+    radioInput.setAttribute(`id`, `${radioForIId[i]}`);
+    radioInput.setAttribute(`name`, `tipPrijave`);
+    radioInput.setAttribute(`value`, `${radioValue[i]}`);
+    radioInput.classList.add(`form-check-input`);
+    radioInput.innerHTML = `${radioTekst[i]}`
+    drugiDiv.appendChild(radioInput);
+    drugiDiv.appendChild(radioLabel);
+    radioDiv.appendChild(prviDiv);
 }
-objForma.innerHTML += `</div>`
-objForma.innerHTML += `<span id="tipPrijave" class="aj-sakrij col-11"></span>
-                        <div class="form-check">
-                        <label class="form-check-label" for="chbObavest">
-                            <input type="checkbox" id="chbObavest" class="form-check-input" value="Obavestenja">Obeležiti ukoliko želite da primate obaveštenja o našim predavanjima i kursevima putem e-mail pošte (opciono).
-                        </label>
-                        </div>
-                        
-                        <button type="button" id="prijava" class="tm-intro-text tm-btn-primary mt-3 mb-5 col-6">Prijavi se</button>`
+
+
+
+let prviDiv = document.createElement(`div`);
+prviDiv.classList.add(`form-check`);
+let chkLabel = document.createElement(`label`);
+chkLabel.classList.add(`form-check-label`);
+chkLabel.setAttribute(`for`, `chbObavest`);
+chkLabel.innerHTML = `Obeležiti ukoliko želite da primate obaveštenja o našim predavanjima i kursevima putem e-mail pošte (opciono).`;
+let chkInput = document.createElement(`input`);
+chkInput.setAttribute(`type`, `checkbox`);
+chkInput.setAttribute(`id`, `chbObavest`);
+chkInput.setAttribute(`value`, `Obavestenja`);
+chkInput.classList.add(`form-check-input`);
+prviDiv.appendChild(chkInput);
+prviDiv.appendChild(chkLabel);
+forma.appendChild(prviDiv);
+
+let tasterPrijava = document.createElement(`button`);
+tasterPrijava.setAttribute(`type`, `button`);
+tasterPrijava.setAttribute(`id`, `prijava`);
+let tasterPrijavaKlase = [`tm-intro-text`, `tm-btn-primary`, `mt-3`, `mb-5`, `col-6`];
+for (let i in tasterPrijavaKlase){
+    tasterPrijava.classList.add(`${tasterPrijavaKlase[i]}`);
+}
+tasterPrijava.innerHTML = `Prijavi se`;
+forma.appendChild(tasterPrijava);
 
 let prijavaButton = document.querySelector("#prijava");
 prijavaButton.addEventListener("click", proveraForma);
@@ -213,9 +293,13 @@ function proveraForma() {
     }
 
     if (tipPrijave == ""){
-        nizTipPrijave[0].parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.remove("aj-sakrij");
-        nizTipPrijave[0].parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.innerHTML = "Morate izabrati ili predavanje ili kurs.";
-        nizTipPrijave[0].parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.add("aj-crveni-okvir");
+        nizTipPrijave[0].parentElement.parentElement.previousElementSibling.classList.remove("aj-sakrij");
+        nizTipPrijave[0].parentElement.parentElement.parentElement.classList.add("aj-crveni-okvir");
+    }
+
+    if (tipPrijave != ""){
+        nizTipPrijave[0].parentElement.parentElement.previousElementSibling.classList.add("aj-sakrij");
+        nizTipPrijave[0].parentElement.parentElement.parentElement.classList.remove("aj-crveni-okvir");
     }
     
 }
