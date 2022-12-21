@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
     $("#nastavak").hide();
-    var parNepar = 0;
+    let parNepar = 0;
     $("#taster").click(function(e){
     e.preventDefault();
 
@@ -46,37 +46,39 @@ document.querySelector("#sifrovanje").addEventListener("click", sifrujDesifruj);
 
 function sifrujDesifruj() {
 
-    var tbInput = ``;
+    let tbInput = ``;
     tbInput += document.querySelector("#input").value;
-    var tbOutput = document.querySelector("#output");
+    let tbOutput = document.querySelector("#output");
 
     //prvi niz - pravljenje niza od stringa
 
-    var nizKaraktera = tbInput.split("");
+    let nizKaraktera = tbInput.split("");
     console.log(nizKaraktera);
 
-    var dvodimenzioniNizIndeks = Math.floor(Math.sqrt(nizKaraktera.length));
+    let dvodimenzioniNizIndeks = Math.floor(Math.sqrt(nizKaraktera.length));
 
 
     //drugi niz - pravljenje dvodimenzionalnog niza
 
-    var dvodimenzionalniNiz = []
+    let dvodimenzionalniNiz = []
     while(nizKaraktera.length) dvodimenzionalniNiz.push(nizKaraktera.splice(0, dvodimenzioniNizIndeks));
     console.log(dvodimenzionalniNiz);
 
     //treci niz - pravljenje kvadratnog dvodimenzionalnog niza
 
-    var kvadratniDvodimenzionalniNiz = napraviNiz(dvodimenzioniNizIndeks, dvodimenzioniNizIndeks);
+        // funkcija za pravljenje kvadratnog dvodimenzionalnog niza
 
     function napraviNiz(length) {
-        var arr = new Array(length || 0),
+        let arr = new Array(length || 0),
             i = length;
         if (arguments.length > 1) {
-            var args = Array.prototype.slice.call(arguments, 1);
+            let args = Array.prototype.slice.call(arguments, 1);
             while(i--) arr[length-1 - i] = napraviNiz.apply(this, args);
         }
         return arr;
     }
+
+    let kvadratniDvodimenzionalniNiz = napraviNiz(dvodimenzioniNizIndeks, dvodimenzioniNizIndeks);
 
     for (let i = 0; i < dvodimenzioniNizIndeks; i++){
         for (let j = 0; j < dvodimenzioniNizIndeks; j++){
@@ -87,12 +89,12 @@ function sifrujDesifruj() {
 
     //cetvrti niz - vracanje u jednodimenzionalni niz
 
-    var nizSifrovanihKaraktera = kvadratniDvodimenzionalniNiz.flat(1);
+    let nizSifrovanihKaraktera = kvadratniDvodimenzionalniNiz.flat(1);
     console.log(nizSifrovanihKaraktera);
 
     //peti niz - spajanje niza u string
 
-    var stringOutput = nizSifrovanihKaraktera.join("");
+    let stringOutput = nizSifrovanihKaraktera.join("");
     console.log(stringOutput);
 
     console.log("****************************************************");
@@ -101,7 +103,7 @@ function sifrujDesifruj() {
     console.log(dvodimenzionalniNiz);
     kvadratniDvodimenzionalniNiz = kvadratniDvodimenzionalniNiz.flat(1);
     console.log(kvadratniDvodimenzionalniNiz);
-    var razlika = dvodimenzionalniNiz.length - kvadratniDvodimenzionalniNiz.length;
+    let razlika = dvodimenzionalniNiz.length - kvadratniDvodimenzionalniNiz.length;
     console.log(razlika);
 
     // ponavljanje ukoliko je potrebno
@@ -131,7 +133,7 @@ function sifrujDesifruj() {
         console.log(dvodimenzionalniNiz);
         kvadratniDvodimenzionalniNiz = kvadratniDvodimenzionalniNiz.flat(1);
         console.log(kvadratniDvodimenzionalniNiz);
-        var razlika = dvodimenzionalniNiz.length - kvadratniDvodimenzionalniNiz.length;
+        let razlika = dvodimenzionalniNiz.length - kvadratniDvodimenzionalniNiz.length;
         console.log(razlika);
     }
     dvodimenzionalniNiz.splice(0, Math.pow(dvodimenzioniNizIndeks, 2));
@@ -146,7 +148,34 @@ function sifrujDesifruj() {
 
 // Kvadratna šifra šifrovanje i dešifrovanje kraj
 
+// Tajmer
+
+let kontaktSekcija = document.querySelector(`#kontakt`);
+
+let tajmer = document.createElement(`h2`);
+tajmer.setAttribute(`id`, `tajmer`);
+tajmer.classList.add(`text-center`);
+tajmer.classList.add(`mb-4`);
+let vremeSledecegPredavanja = new Date(`Jan 15, 2023 08:00:00`).getTime();
+
+let preostaloVreme = setInterval(function(){
+    let danasnjeVreme = new Date().getTime();
+    let razlika = vremeSledecegPredavanja - danasnjeVreme;
+    let preostaloDana = Math.floor(razlika / 1000 / 60 / 60 / 24);
+    let preostaloSati = Math.floor((razlika % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let preostaloMinuta = Math.floor((razlika % (1000 * 60 * 60)) / (1000 * 60));
+    let preostaloSekundi = Math.floor((razlika % (1000 * 60)) / 1000);
+
+    tajmer.innerHTML = `Preostalo vremena do sledeceg predavanja: ${preostaloDana}d ${preostaloSati}h ${preostaloMinuta}m ${preostaloSekundi}s`;
+})
+
+kontaktSekcija.insertBefore(tajmer, kontaktSekcija.firstChild);
+
+// Tajmer kraj
+
 // Forma
+
+    // Dinamicko pravljenje i ispisivanje forme
 
 let objForma = document.querySelector("#formular");
 
@@ -237,8 +266,6 @@ for (let i in radioTekst){
     radioDiv.appendChild(prviDiv);
 }
 
-
-
 let prviDiv = document.createElement(`div`);
 prviDiv.classList.add(`form-check`);
 let chkLabel = document.createElement(`label`);
@@ -264,16 +291,18 @@ for (let i in tasterPrijavaKlase){
 tasterPrijava.innerHTML = `Prijavi se`;
 forma.appendChild(tasterPrijava);
 
+    //Provera Forme
+
 let prijavaButton = document.querySelector("#prijava");
 prijavaButton.addEventListener("click", proveraForma);
 
-var objIme = document.querySelector("#ime");
-var objPrezime = document.querySelector("#prezime");
-var objEmail = document.querySelector("#email");
-var nizTipPrijave = document.getElementsByName("tipPrijave");
+let objIme = document.querySelector("#ime");
+let objPrezime = document.querySelector("#prezime");
+let objEmail = document.querySelector("#email");
+let nizTipPrijave = document.getElementsByName("tipPrijave");
 
-var regExImeIPrezime = /^([A-ZŠĐČĆŽ][a-zšđčćž]{2,19})(\s[A-ZŠĐČĆŽ][a-zšđčćž)]{2,19})?$/;
-var regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+let regExImeIPrezime = /^([A-ZŠĐČĆŽ][a-zšđčćž]{2,19})(\s[A-ZŠĐČĆŽ][a-zšđčćž)]{2,19})?$/;
+let regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 blurProvera(objIme, regExImeIPrezime, "Ime nije u dobrom formatu. Dozvoljena su dva imena. Primer: Aleksandar Radivoje");
 blurProvera(objPrezime, regExImeIPrezime, "Prezime nije u dobrom formatu. Dozvoljena su dva prezimena. Primer: Pavlović Jovanović");
