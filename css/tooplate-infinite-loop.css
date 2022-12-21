@@ -753,3 +753,7 @@ p {
   font-size: medium;
   text-align: justify;
 }
+
+textarea {
+  resize: none;
+}
